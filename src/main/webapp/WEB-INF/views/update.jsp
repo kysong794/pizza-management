@@ -6,17 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>수정</title>
+<title>매출 전표 수정</title>
 </head>
-	
-	<br>
-	<div class="jumbotron jumbotron-fluid">
-	  <div class="container">
-	    <h1 class="display-4">수정</h1>
-	  </div>
-	</div>
-
 	<body>
+		
+		<br>
+		<div class="jumbotron jumbotron-fluid">
+		  <div class="container">
+		    <h1 class="display-4">매출 전표 수정</h1>
+		  </div>
+		</div>
+	
 		<form id="form" action="/pizza/update" method="post">	
 		
 			<div>
@@ -61,8 +61,8 @@
 				<input type="number" name ="amount" value="${sale.amount }"/>
 			</div>
 			<div>
-				<input type="submit" value="수정"/>
-				<input type="reset" value="다시쓰기"/>
+				<input type="submit" class="btn btn-primary" value="수정"/>
+				<input type="reset" class="btn btn-secondary" value="다시쓰기"/>
 			</div>	
 		</form>
 	</body>

@@ -9,6 +9,14 @@
 <title>지점별 매출 현황</title>
 </head>
 <body>
+
+	<br>
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <h1 class="display-4">지점별 매출 현황</h1>
+	  </div>
+	</div>
+	
 	<table class="table">
 		<tr>
 			<th>지점 코드</th>

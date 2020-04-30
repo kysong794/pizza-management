@@ -6,9 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>통합매출조회</title>
+<title>통합 매출 조회</title>
 </head>
 <body>
+
+	<br>
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <h1 class="display-4">통합 매출 조회</h1>
+	  </div>
+	</div>
+	
 	<form id="form" action="/pizza/delete" method="post">	
 		<table class="table">
 			<tr>
@@ -19,6 +27,8 @@
 				<th>피자명  </th>
 				<th>판매수량  </th>
 				<th>매출액  </th>
+				<th> </th>
+				<th> </th>
 			</tr>
 			<c:forEach items="${totalSaleList}" var="pizzaVo">
 				<tr>

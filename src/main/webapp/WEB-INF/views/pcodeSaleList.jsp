@@ -8,6 +8,14 @@
 <title>상품별 매출 현황</title>
 </head>
 <body>
+
+	<br>
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <h1 class="display-4">상품별 매출 현황</h1>
+	  </div>
+	</div>
+	
 	<table class="table">
 		<tr>
 			<th>피자코드</th>

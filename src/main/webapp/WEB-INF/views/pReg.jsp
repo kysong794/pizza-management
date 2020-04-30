@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매출전표등록</title>
+<title>매출 전표 등록</title>
 </head>
 <body>
 
 	<br>
 	<div class="jumbotron jumbotron-fluid">
 	  <div class="container">
-	    <h1 class="display-4">매출전표등록</h1>
+	    <h1 class="display-4">매출 전표 등록</h1>
 	  </div>
 	</div>
 			
@@ -50,8 +50,8 @@
 			<input type="number" name ="amount"/>
 		</div>
 		<div>
-			<input type="submit" value="등록"/>
-			<input type="reset" value="다시쓰기"/>
+			<input type="submit" class="btn btn-primary" value="등록"/>
+			<input type="reset" class="btn btn-secondary" value="다시쓰기"/>
 		</div>	
 	</form>
 	

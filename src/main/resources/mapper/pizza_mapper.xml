@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MariaDB -->
+
+<mapper namespace="com.spring.repository.PizzaRepository">
+
+	<resultMap id="pizzaMap" type="com.spring.vo.PizzaVo">
+			<!-- type=어느 VO에 보내줄것인지 설정해주는것 -->
+		<result property="pcode" column="pcode"/>
+		<result property="pname" column="pname"/>
+		<result property="cost" column="cost"/>
+		<result property="scode" column="scode"/>
+		<result property="sname" column="sname"/>
+		<result property="saleno" column="saleno"/>
+		<result property="saledate" column="saledate"/>
+		<result property="amount" column="amount"/>
+		<result property="sumcost" column="sumcost"/>
+		
+		<!-- property = Vo쪽의 이름 //  column = 밑에 쓰는 컬럼에서의 이름 -->
+	</resultMap>
+	
+	<!-- pReg = 전표등록 -->
+	<insert id="pRegSave" parameterType="com.spring.vo.PizzaVo">
+		insert into salelist
+		(
+			saleno,
+			scode,
+			saledate,
+			pcode,
+			amount
+		)
+		VALUES
+		(
+			#{saleno},
+			#{scode},
+			#{saledate},
+			#{pcode},
+			#{amount}
+		)
+	</insert>
+	
+	<select id="saleno" resultType="String">
+		select ifnull(max(saleno),0)+1 from salelist 
+	</select>
+	
+	<select id="scodelist" parameterType="com.spring.vo.PizzaVo" resultType="com.spring.vo.PizzaVo">
+		select 
+			scode,sname
+		from
+			shop
+	</select>
+
+	<select id="pcodelist" resultMap="pizzaMap">
+		select
+			pcode,pname
+		from
+			pizza
+	</select>
+	
+	<!-- scodelist와 pcodelist 
+		resultType -> DB에서 바로 VO로 가는것 (이름에 차이가 없을시 사용가능)
+		resultMap -> DB에서 온 이름을 resultMap에서 셋팅해둔 이름대로 변경한후 VO로 보내는것 
+	-->
+	
+	<!-- 통합 매출 현황 조회 -->
+	<select id="pcodeSaleList" resultMap="pizzaMap">
+		select
+			a.pcode,b.pname,
+			sum(a.amount*b.cost) as sumcost
+		from
+			salelist a
+		inner join pizza b on a.pcode = b.pcode
+		group
+			by a.pcode
+		order
+			by a.pcode ASC
+	</select>
+
+	<!-- 지점별 매출 현황 -->
+	<select id="shopSaleList" resultMap="pizzaMap">
+		select 
+			a.scode,
+			a.sname,
+			<!-- format(b.amount*c.cost,0) as sumcost BD에서 가공했을때의 모습-->
+			sum(b.amount*c.cost) as sumcost
+		from shop a
+			inner join salelist b on a.scode = b.scode
+			inner join pizza c on b.pcode = c.pcode
+		group
+			by a.scode
+		order
+			by a.scode ASC
+	</select>
+	
+	<!-- 상품별매출현황 -->
+	<select id="totalSaleList" resultMap="pizzaMap">
+		select
+			a.saleno,a.scode,b.sname,saledate,a.pcode,c.pname,a.amount, <!--DB에서 가공했을때 date_format(a.saledate,'%Y-%m-%d') as saledate -->
+			a.amount*c.cost as sumcost
+		from salelist a
+			inner join shop b on a.scode = b.scode
+			inner join pizza c on a.pcode = c.pcode
+		order by a.saleno ASC
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE from salelist
+		WHERE
+			saleno = #{ saleno }
+	</delete>
+	
+	<update id="update" parameterType="int">
+		update
+			salelist
+		SET 
+			scde = #{scde},
+			sname = #{sname},
+			saledate = #{saledate},
+			pcode = #{pcode},
+			amount = #{amount} 
+		where
+			saleno = #{saleno}
+	</update>
+	
+	<!-- #(샵),$ 비슷함 -->
+</mapper>

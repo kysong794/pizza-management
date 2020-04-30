@@ -38,10 +38,7 @@ public class PizzaController {
 		return "pReg"; //jsp의 이름 혹은 위치 (주소가 아님)
 	}
 	
-	// 추가 사항 발생
-	// 수정했지롱
-	// 수정함 ㅋㅋ
-	// 아무거나임
+	// kim 수정함
 	
 //	@PostMapping("/pRegSave") 서블릿에서 사용하던 방법
 //	public String pRegSaveTest(/* HttpServletRequest req */ PizzaVo pizzaVo) {

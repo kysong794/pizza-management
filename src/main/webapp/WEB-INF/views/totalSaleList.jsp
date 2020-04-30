@@ -11,7 +11,7 @@
 <body>
 
 <form id="form" action="/pizza/delete" method="post">	
-	<table>
+	<table class="table">
 		<tr>
 			<th>매출전표번호  </th>
 			<th>지점  </th>
@@ -36,12 +36,13 @@
 					<fmt:formatNumber value="${pizzaVo.sumcost }" pattern="#,###"/>원
 				</th>
 				<th>
-					<%-- <input type="hidden" name="saleno" value="${ pizzaVo.saleno }"/> --%>
-					<button type="button" onclick="javascript:deletePizza(${ pizzaVo.saleno })">삭제</button>
+					<a class="btn btn-info" href="/pizza/update?saleno=${pizzaVo.saleno}">수정</a>
 				</th>
 				<th>
-					<a href="/pizza/update">수정</a>
+					<%-- <input type="hidden" name="saleno" value="${ pizzaVo.saleno }"/> --%>
+					<button class="btn btn-secondary" type="button" onclick="javascript:deletePizza(${ pizzaVo.saleno })">삭제</button>
 				</th>
+
 			</tr>
 		</c:forEach>
 	</table>

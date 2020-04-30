@@ -8,44 +8,62 @@
 <meta charset="UTF-8">
 <title>수정</title>
 </head>
-<body>
-	<form id="form" action="/pizza/update" method="post">	
 	
-		<div>
-			<label>매출전표번호 :</label>
-			<input type="text" name ="saleno" value="${saleno}" readonly/>
-		</div>
-		<div>
-			<label>지점코드 :</label>
-			<select id="scode" name="scode"> 
-				<option selected>지점 선택</option>
-				<c:forEach items="${scodelist}" var="pizzaVo">
-					<option value="${pizzaVo.scode }">${pizzaVo.sname }</option>
-				</c:forEach>
-			</select>
-		</div>
-		<div>
-			<label>피자일자 :</label>
-			<input type="date" name ="saledate"/>
-		</div> 
-		<div>
-			<label>피자코드 :</label>
-			<select id="pcode" name="pcode">
-				<option selected>피자선택</option>
-				<c:forEach items="${pcodelist}" var="pizzaVo">
-					<option value="${pizzaVo.pcode }">${pizzaVo.pname }</option>
-				</c:forEach>
-			</select>
-		</div>
-		<div>
-			<label>판매수량 :</label>
-			<input type="number" name ="amount"/>
-		</div>
-		<div>
-			<input type="submit" value="수정"/>
-			<input type="reset" value="다시쓰기"/>
-		</div>	
-	</form>
-	
-</body>
+	<br>
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <h1 class="display-4">수정</h1>
+	  </div>
+	</div>
+
+	<body>
+		<form id="form" action="/pizza/update" method="post">	
+		
+			<div>
+				<label>매출전표번호 :</label>
+				<input type="text" name ="saleno" value="${sale.saleno}" readonly/>
+			</div>
+			<div>
+				<label>지점코드 :</label>
+				<select id="scode" name="scode"> 
+					<option>지점 선택</option>
+					<c:forEach items="${scodelist}" var="scode">
+						<c:if test="${ sale.scode eq scode.scode }">
+							<option selected value="${scode.scode}">${scode.sname}</option>
+						</c:if>
+						<c:if test="${ sale.scode ne scode.scode }">
+							<option value="${scode.scode}">${scode.sname}</option>
+						</c:if>
+					</c:forEach>
+				</select>
+			</div>
+			<div>
+				<label>피자일자 :</label>
+				<input type="date" name ="saledate" value="${ sale.formatDate() }"/>
+				<%-- <input type="date" name ="saledate" value='<fmt:formatDate value="${sale.saledate}" pattern="yyyy-MM-dd"/>'/> --%>
+			</div> 
+			<div>
+				<label>피자코드 :</label>
+				<select id="pcode" name="pcode">
+					<option>피자선택</option>
+					<c:forEach items="${pcodelist}" var="pcode">
+						<c:if test="${ pcode.pcode eq sale.pcode }">
+							<option selected value="${ pcode.pcode }">${pcode.pname }</option>
+						</c:if>
+						<c:if test="${pcode.pcode ne sale.pcode }">
+							<option value="${ pcode.pcode }">${pcode.pname }</option>
+						</c:if>
+					</c:forEach>
+				</select>
+			</div>
+			<div>
+				<label>판매수량 :</label>
+				<input type="number" name ="amount" value="${sale.amount }"/>
+			</div>
+			<div>
+				<input type="submit" value="수정"/>
+				<input type="reset" value="다시쓰기"/>
+			</div>	
+		</form>
+	</body>
 </html>

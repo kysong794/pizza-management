@@ -8,7 +8,7 @@
 <title>상품별 매출 현황</title>
 </head>
 <body>
-	<table>
+	<table class="table">
 		<tr>
 			<th>피자코드</th>
 			<th>피자 명</th>

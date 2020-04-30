@@ -9,45 +9,44 @@
 <title>통합매출조회</title>
 </head>
 <body>
-
-<form id="form" action="/pizza/delete" method="post">	
-	<table class="table">
-		<tr>
-			<th>매출전표번호  </th>
-			<th>지점  </th>
-			<th>판매일자  </th>
-			<th>피자코드  </th>
-			<th>피자명  </th>
-			<th>판매수량  </th>
-			<th>매출액  </th>
-		</tr>
-		<c:forEach items="${totalSaleList}" var="pizzaVo">
+	<form id="form" action="/pizza/delete" method="post">	
+		<table class="table">
 			<tr>
-				<th>${pizzaVo.saleno }</th>
-				<th>${pizzaVo.scode }-${pizzaVo.sname }</th>
-				<!-- Vo에 타입이 Date 일때 jsp에서 가공할때. //pattern이 앞 value가 뒤에 와야한다 안그럼 오류남-->
-				<th>
-					<fmt:formatDate pattern="yyyy-MM-dd" value="${pizzaVo.saledate }"/>
-				</th>
-				<th>${pizzaVo.pcode }</th>
-				<th>${pizzaVo.pname }</th>
-				<th>${pizzaVo.amount }</th>
-				<th>
-					<fmt:formatNumber value="${pizzaVo.sumcost }" pattern="#,###"/>원
-				</th>
-				<th>
-					<a class="btn btn-info" href="/pizza/update?saleno=${pizzaVo.saleno}">수정</a>
-				</th>
-				<th>
-					<%-- <input type="hidden" name="saleno" value="${ pizzaVo.saleno }"/> --%>
-					<button class="btn btn-secondary" type="button" onclick="javascript:deletePizza(${ pizzaVo.saleno })">삭제</button>
-				</th>
-
+				<th>매출전표번호  </th>
+				<th>지점  </th>
+				<th>판매일자  </th>
+				<th>피자코드  </th>
+				<th>피자명  </th>
+				<th>판매수량  </th>
+				<th>매출액  </th>
 			</tr>
-		</c:forEach>
-	</table>
-	<input type="hidden" name="saleno" />
-</form>
+			<c:forEach items="${totalSaleList}" var="pizzaVo">
+				<tr>
+					<th>${pizzaVo.saleno }</th>
+					<th>${pizzaVo.scode }-${pizzaVo.sname }</th>
+					<!-- Vo에 타입이 Date 일때 jsp에서 가공할때. //pattern이 앞 value가 뒤에 와야한다 안그럼 오류남-->
+					<th>
+						<fmt:formatDate pattern="yyyy-MM-dd" value="${pizzaVo.saledate }"/>
+					</th>
+					<th>${pizzaVo.pcode }</th>
+					<th>${pizzaVo.pname }</th>
+					<th>${pizzaVo.amount }</th>
+					<th>
+						<fmt:formatNumber value="${pizzaVo.sumcost }" pattern="#,###"/>원
+					</th>
+					<th>
+						<a class="btn btn-info" href="/pizza/update?saleno=${pizzaVo.saleno}">수정</a>
+					</th>
+					<th>
+						<%-- <input type="hidden" name="saleno" value="${ pizzaVo.saleno }"/> --%>
+						<button class="btn btn-secondary" type="button" onclick="javascript:deletePizza(${ pizzaVo.saleno })">삭제</button>
+					</th>
+	
+				</tr>
+			</c:forEach>
+		</table>
+		<input type="hidden" name="saleno" />
+	</form>
 
 <script>
 	/*

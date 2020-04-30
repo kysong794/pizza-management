@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.PizzaService;
@@ -40,6 +39,7 @@ public class PizzaController {
 	}
 	
 	// 추가 사항 발생
+	// 수정했지롱
 	
 //	@PostMapping("/pRegSave") 서블릿에서 사용하던 방법
 //	public String pRegSaveTest(/* HttpServletRequest req */ PizzaVo pizzaVo) {

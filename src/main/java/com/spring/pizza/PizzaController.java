@@ -115,8 +115,20 @@ public class PizzaController {
 	@PostMapping("update")
 	public String update(PizzaVo pizzaVo) {
 		pizzaService.update(pizzaVo);
-		return "redirect:/pizza/update";
+		
+		return "redirect:/pizza/totalSaleList";
 	}
+	
+	// Query Parameter => Get 방식으로 주소 이동 시, 변수를 전달하기 위한 방법 중 하나
+	// ex) 주소가 /pizza/update일 때, 변수 saleno를 전달하고 싶음
+	// saleno=100001라면,
+	// '?' <- QueryParameter를 시작한다는 선언
+	// 전달하고자 하는 변수가 많을 경우, '&'로 구분
+	// [saleno=100001&pcode=A001&scode=B002] (쿼리스트링)
+	// /주소?saleno=100001&pcode=A001&scode=B002
+	
+	//return "redirect:/pizza/update?saleno=" + pizzaVo.getSaleno();
+	//수정 화면으로 그대로 유지
 	
 	/**
 	 * @RequestParam : 에서 http://localhost:8080/pizza/update?이름=값

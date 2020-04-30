@@ -111,12 +111,11 @@
 			saleno = #{ saleno }
 	</delete>
 	
-	<update id="update" parameterType="int">
+	<update id="update" parameterType="pizzaVo">
 		update
 			salelist
 		SET 
-			scde = #{scde},
-			sname = #{sname},
+			scode = #{scode},
 			saledate = #{saledate},
 			pcode = #{pcode},
 			amount = #{amount} 

@@ -29,4 +29,5 @@ public interface PizzaRepository {
 	void update(PizzaVo pizzaVo);
 	
 	PizzaVo selectSale(int saleno);
+	
 }

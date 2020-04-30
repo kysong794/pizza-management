@@ -40,6 +40,7 @@ public class PizzaController {
 	}
 	
 	// 추가 사항 발생
+	// 수정
 	
 //	@PostMapping("/pRegSave") 서블릿에서 사용하던 방법
 //	public String pRegSaveTest(/* HttpServletRequest req */ PizzaVo pizzaVo) {

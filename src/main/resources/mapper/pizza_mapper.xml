@@ -125,4 +125,22 @@
 	</update>
 	
 	<!-- #(샵),$ 비슷함 -->
+	
+	<select id="selectSale" parameterType="int" resultMap="pizzaMap">
+		SELECT
+			a.saleno,
+			a.scode,
+			a.saledate,
+			a.pcode,
+			a.amount,
+			b.sname,
+			c.pname
+		FROM
+			salelist a
+		inner join shop b on a.scode = b.scode
+		inner join pizza c on a.pcode = c.pcode
+		WHERE
+			saleno = #{saleno}
+	</select>
+	
 </mapper>

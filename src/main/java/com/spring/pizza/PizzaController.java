@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.PizzaService;
@@ -37,11 +40,6 @@ public class PizzaController {
 		req.setAttribute("saleno", saleno);
 		return "pReg"; //jsp의 이름 혹은 위치 (주소가 아님)
 	}
-	
-	// 추가 사항 발생
-	// 수정했지롱
-	// 수정함 ㅋㅋ
-	// 아무거나임
 	
 //	@PostMapping("/pRegSave") 서블릿에서 사용하던 방법
 //	public String pRegSaveTest(/* HttpServletRequest req */ PizzaVo pizzaVo) {
@@ -120,9 +118,37 @@ public class PizzaController {
 		return "redirect:/pizza/update";
 	}
 	
-	@GetMapping("update")
-	public String update() {
+	/**
+	 * @RequestParam : 에서 http://localhost:8080/pizza/update?이름=값
+	 * 	query string "이름=값"을 가리킨다.
+	 * 	값을 가져오기 위해서 쓰는 애노테이션 이름은 변수 이름, 값은 변수에 할당한다.
+	 * 
+	 * @Param : MyBatis에서 Repository 메서드의 파라미터가 여러 개 일 때, 각가의 변수 이름을 지정하기 위해서 사용
+	 * ex)
+	 * 		Repository의 메서드
+	 * 		List<Object> selectAll(
+	 * 			@Param("objNo") int objNo, @Param("objName") String objName
+	 * 		);
+	 * 
+	 * 		mapper
+	 * 		<select>
+	 * 			select * from
+	 * 			where objNo = #{objNo} & objName = #{objName}
+	 * 		</select>
+	 * 
+	 */
+	@GetMapping("update") 
+	public String update(@RequestParam int saleno, HttpServletRequest req) {
+		PizzaVo sale = pizzaService.selectSale(saleno);
 
-		return "redirect:/pizza/update";
+		List<PizzaVo> scodelist = pizzaService.scodelist();
+		List<PizzaVo> pcodelist = pizzaService.pcodelist();
+		
+		req.setAttribute("sale", sale);
+		req.setAttribute("scodelist",scodelist);
+		req.setAttribute("pcodelist",pcodelist);
+		
+		return "update";
 	}
+
 }

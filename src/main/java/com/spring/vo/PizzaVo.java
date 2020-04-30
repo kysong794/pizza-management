@@ -1,5 +1,6 @@
 package com.spring.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,4 +23,9 @@ public class PizzaVo {
 	private int amount;
 	
 	private Long sumcost;
+
+	public String formatDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(this.saledate);
+	}
 }

@@ -9,7 +9,7 @@
 <title>지점별 매출 현황</title>
 </head>
 <body>
-	<table>
+	<table class="table">
 		<tr>
 			<th>지점 코드</th>
 			<th>지점 명</th>

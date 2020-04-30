@@ -10,6 +10,7 @@ import com.spring.repository.PizzaRepository;
 import com.spring.vo.PizzaVo;
 
 @Service
+@Transactional
 public class PizzaService {
 	
 	@Autowired
@@ -31,7 +32,6 @@ public class PizzaService {
 	}
 	
 	//매출등록 (매출전표번호를 웹에 노출)
-	@Transactional
 	public void pRegSave(PizzaVo pizzaVo) {
 		
 //		String saleno = pizzaRepository.saleno();
@@ -53,13 +53,15 @@ public class PizzaService {
 		return pizzaRepository.totalSaleList();
 	}
 	
-	@Transactional
 	public void delete(int saleno) {
 		pizzaRepository.delete(saleno);
 	}
 	
-	@Transactional
 	public void update(PizzaVo pizzaVo) {
 		pizzaRepository.update(pizzaVo);
+	}
+	
+	public PizzaVo selectSale(int saleno) {
+		return pizzaRepository.selectSale(saleno);
 	}
 }

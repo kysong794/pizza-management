@@ -49,7 +49,8 @@
 					</th>
 					<th>
 						<%-- <input type="hidden" name="saleno" value="${ pizzaVo.saleno }"/> --%>
-						<button class="btn btn-secondary" type="button" onclick="javascript:deletePizza(${ pizzaVo.saleno })">삭제</button>
+						<button class="btn btn-secondary" type="button"
+								onclick="javascript:deletePizza(${ pizzaVo.saleno })">삭제</button>
 					</th>
 	
 				</tr>
@@ -64,7 +65,7 @@
 		내가 원하는 기능이 있으면 이를 참조해서 사용할 수 있도록 한 코드(들)
 		ex) 제이쿼리는 자바스크립트의 라이브러리입니다(O)
 	*/
-	/*  jQurey 자바스크립트의 라이브러리(javascript사용을 도와줌 (확장팩같은 느낌))
+	/*  jQuery 자바스크립트의 라이브러리(javascript사용을 도와줌 (확장팩같은 느낌))
 		$() -> jQuery (선택자 : DOM엘리먼트(태그)를 선택할 때 도와주는 기능)
 		선택하는 방법 여러가지가 있음.
 		1. 태그 이름으로 (태그의 정보를 전부 가지고) 오는 방법
@@ -85,12 +86,17 @@
 	// pk saleno를 받아서 form 안의 input 태그의 value에 saleno를 넣어준다 ->
 	// form을 제출
 	function deletePizza(saleno) {
-		// input 태그의 value에 saleno를 세팅
-		$("input[name=saleno]").val(saleno);
-		
-		// 동기
-		$("#form").submit();
-		
+		var result = confirm('정말로 삭제 하시겠습니까?');
+
+		if(result==true){
+			// input 태그의 value에 saleno를 세팅
+			$("input[name=saleno]").val(saleno);
+			// 동기
+			$("#form").submit();
+			
+		}else{
+			
+		}
 		// 비동기
 		// $.ajax({...});
 	}

@@ -25,7 +25,7 @@
 		</div>
 		<div class="form-group">
 			<label >지점코드 :</label>
-			<select id="scode" name="scode" > <!-- id는 select라는 태그의 고유식별코드가 되는것 //name은 다른곳에서 쓸때의 값을 담음-->
+			<select id="scode" name="scode" class="form-control col-3"> <!-- id는 select라는 태그의 고유식별코드가 되는것 //name은 다른곳에서 쓸때의 값을 담음-->
 				<option selected>지점 선택</option>
 				<c:forEach items="${scodelist}" var="pizzaVo"><!-- items = 반복가능한객체를 가져옴 // var=그 객체중의 1개를 넣어줌 -->
 					<option value="${pizzaVo.scode }">${pizzaVo.sname }</option>
@@ -34,11 +34,11 @@
 		</div>
 		<div class="form-group">
 			<label>피자일자 :</label>
-			<input type="date" name ="saledate"/>
+			<input type="date" name ="saledate" class="form-control col-3"/>
 		</div> 
 		<div class="form-group"> 
 			<label>피자코드 :</label>
-			<select id="pcode" name="pcode">
+			<select id="pcode" name="pcode" class="form-control col-3">
 				<option selected>피자선택</option>
 				<c:forEach items="${pcodelist}" var="pizzaVo" >
 					<option value="${pizzaVo.pcode }">${pizzaVo.pname }</option>
@@ -47,7 +47,7 @@
 		</div>
 		<div class="form-group">
 			<label>판매수량 :</label>
-			<input type="number" name ="amount"/>
+			<input type="number" name ="amount" class="form-control col-3" min="0"/>
 		</div>
 		<div class="form-group">
 			<input type="submit" class="btn btn-primary" value="등록"/>

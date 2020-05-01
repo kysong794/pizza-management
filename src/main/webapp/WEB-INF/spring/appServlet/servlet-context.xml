@@ -73,6 +73,7 @@
     <beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <beans:constructor-arg index="0" ref="sqlSessionFactory"/>
     </beans:bean>
+
 	<beans:bean id = "transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:constructor-arg index="0" ref = "dataSource"/>
 	</beans:bean>

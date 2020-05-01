@@ -16,8 +16,8 @@
 		    <h1 class="display-4">매출 전표 수정</h1>
 		  </div>
 		</div>
-	
-		<form id="form" action="/pizza/update" method="post">	
+
+		<form id="form" action="/pizza/update" method="post">
 		
 			<div>
 				<label>매출전표번호 :</label>

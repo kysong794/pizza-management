@@ -22,6 +22,6 @@
 		<div>5.매출전표등록프로그램을 작성하시오.</div>
 		<div>6.매출조회 프로그램을 작성하시오.</div>
 	</section>
-	<footer>HRDKOREA Copyright&copy;2018 All rights reserved.Human Resources Development Service of Korea</footer>
+
 </body>
 </html>

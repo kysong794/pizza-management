@@ -54,7 +54,7 @@
 			<input type="reset" class="btn btn-secondary" value="다시쓰기"/>
 		</div>	
 	</form>
-	
+
 	<!-- <script type="text/javascript">
 		$("form").on("submit", function(e) {
 			e.preventDefault();

@@ -102,7 +102,7 @@
 		from salelist a
 			inner join shop b on a.scode = b.scode
 			inner join pizza c on a.pcode = c.pcode
-		order by a.saleno ASC
+		order by a.saleno DESC
 	</select>
 	
 	<delete id="delete" parameterType="int">

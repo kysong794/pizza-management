@@ -56,9 +56,9 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="/pizza/pReg">매출전표 등록</a></li>
-					<li class="nav-item"><a class="nav-link" href="/pizza/pcodeSaleList">통합매출 조회</a></li>
+					<li class="nav-item"><a class="nav-link" href="/pizza/pcodeSaleList">상품별매출현황</a></li>
 					<li class="nav-item"><a class="nav-link" href="/pizza/shopSaleList">지점별매출현황</a></li>
-					<li class="nav-item"><a class="nav-link" href="/pizza/totalSaleList">상품별매출현황</a></li>
+					<li class="nav-item"><a class="nav-link" href="/pizza/totalSaleList">통합매출 조회</a></li>
 				</ul>
 			</div>
 		</div>

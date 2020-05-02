@@ -19,13 +19,13 @@
 
 		<form id="form" action="/pizza/update" method="post">
 		
-			<div>
+			<div class="form-group">
 				<label>매출전표번호 :</label>
-				<input type="text" name ="saleno" value="${sale.saleno}" readonly/>
+				<input type="text" name ="saleno" value="${sale.saleno}" class="form-control col-1" readonly/>
 			</div>
-			<div>
+			<div  class="form-group">
 				<label>지점코드 :</label>
-				<select id="scode" name="scode"> 
+				<select id="scode" name="scode" class="form-control col-3"> 
 					<option>지점 선택</option>
 					<c:forEach items="${scodelist}" var="scode">
 						<c:if test="${ sale.scode eq scode.scode }">
@@ -37,14 +37,14 @@
 					</c:forEach>
 				</select>
 			</div>
-			<div>
+			<div class="form-group">
 				<label>피자일자 :</label>
-				<input type="date" name ="saledate" value="${ sale.formatDate() }"/>
+				<input type="date" name ="saledate" class="form-control col-3" value="${ sale.formatDate() }"/>
 				<%-- <input type="date" name ="saledate" value='<fmt:formatDate value="${sale.saledate}" pattern="yyyy-MM-dd"/>'/> --%>
 			</div> 
-			<div>
+			<div class="form-group">
 				<label>피자코드 :</label>
-				<select id="pcode" name="pcode">
+				<select id="pcode" name="pcode" class="form-control col-3">
 					<option>피자선택</option>
 					<c:forEach items="${pcodelist}" var="pcode">
 						<c:if test="${ pcode.pcode eq sale.pcode }">
@@ -56,11 +56,11 @@
 					</c:forEach>
 				</select>
 			</div>
-			<div>
+			<div class="form-group">
 				<label>판매수량 :</label>
-				<input type="number" name ="amount" value="${sale.amount }"/>
+				<input type="number" name ="amount" class="form-control col-3" value="${sale.amount }" min="0"/>
 			</div>
-			<div>
+			<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="수정"/>
 				<input type="reset" class="btn btn-secondary" value="다시쓰기"/>
 			</div>	

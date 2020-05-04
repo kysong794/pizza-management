@@ -51,12 +51,11 @@
 						<%-- <input type="hidden" name="saleno" value="${ pizzaVo.saleno }"/> --%>
 						<button class="btn btn-secondary" type="button"
 								onclick="javascript:deletePizza(${ pizzaVo.saleno })">삭제</button>
+						<input type="hidden" name="saleno" />
 					</th>
-	
 				</tr>
 			</c:forEach>
 		</table>
-		<input type="hidden" name="saleno" />
 	</form>
 
 <script>

@@ -12,7 +12,7 @@ public interface PizzaRepository {
 	//pRegsave = 전표등록
 	void pRegSave(PizzaVo pizzaVo);
 	
-	String saleno();
+	int saleno();
 	
 	List<PizzaVo> scodelist();
 	

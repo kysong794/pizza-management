@@ -27,7 +27,7 @@ public class PizzaService {
 	}
 	
 	//판매번호
-	public String saleno() {
+	public int saleno() {
 		return pizzaRepository.saleno();
 	}
 	
@@ -53,14 +53,17 @@ public class PizzaService {
 		return pizzaRepository.totalSaleList();
 	}
 	
+	//삭제
 	public void delete(int saleno) {
 		pizzaRepository.delete(saleno);
 	}
 	
+	//수정
 	public void update(PizzaVo pizzaVo) {
 		pizzaRepository.update(pizzaVo);
 	}
 	
+	//수정정보 가져오기
 	public PizzaVo selectSale(int saleno) {
 		return pizzaRepository.selectSale(saleno);
 	}

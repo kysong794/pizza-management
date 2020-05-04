@@ -20,7 +20,7 @@
 		
 		<!-- property = Vo쪽의 이름 //  column = 밑에 쓰는 컬럼에서의 이름 -->
 	</resultMap>
-	
+	<!-- #(샵),$ 비슷함 -->
 	<!-- pReg = 전표등록 -->
 	<insert id="pRegSave" parameterType="com.spring.vo.PizzaVo">
 		insert into salelist
@@ -41,7 +41,7 @@
 		)
 	</insert>
 	
-	<select id="saleno" resultType="String">
+	<select id="saleno" resultType="int">
 		select ifnull(max(saleno),0)+1 from salelist 
 	</select>
 	
@@ -105,12 +105,14 @@
 		order by a.saleno DESC
 	</select>
 	
+	<!-- 삭제 -->
 	<delete id="delete" parameterType="int">
 		DELETE from salelist
 		WHERE
 			saleno = #{ saleno }
 	</delete>
 	
+	<!-- 수정 -->
 	<update id="update" parameterType="pizzaVo">
 		update
 			salelist
@@ -123,8 +125,7 @@
 			saleno = #{saleno}
 	</update>
 	
-	<!-- #(샵),$ 비슷함 -->
-	
+	<!-- 수정 정보 -->
 	<select id="selectSale" parameterType="int" resultMap="pizzaMap">
 		SELECT
 			a.saleno,

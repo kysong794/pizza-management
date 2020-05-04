@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.service.PizzaService;
 import com.spring.vo.PizzaVo;
@@ -33,7 +33,7 @@ public class PizzaController {
 		List<PizzaVo> scodelist = pizzaService.scodelist();
 		List<PizzaVo> pcodelist = pizzaService.pcodelist();
 		
-		String saleno = pizzaService.saleno();
+		int saleno = pizzaService.saleno();
 		
 		req.setAttribute("scodelist",scodelist);
 		req.setAttribute("pcodelist",pcodelist);
@@ -63,10 +63,48 @@ public class PizzaController {
 //		return "redirect:/";
 //	}
 	
+	
+	/**
+		원시 타입 & 참조 타입
+		
+		원시 타입 Primitive Type : 해당 값은 주소가 없음. 값만 존재하며, 값을 주지 않으면 기본 값이 들어감
+		int a;
+		a -> 0;
+		ex) int a = 10; a -> 10;
+		
+		원시형 타입 int, float, double, long, ... 소문자로 시작
+		참조 타입 Integer, Float, Double, Date, String, ... 대문자로 시작
+		
+		참조 타입 Reference Type : 주소와 값을 가짐
+		Integer a;
+		a -> null; 주소가 없으니까...
+		ex) Integer a = 10; a -> 0xf51ae188f, Integer.valueOf(a) -> 10
+	 */
+	
 	//DB에 값을 넣을때
 	@PostMapping("/pRegSave")
-	public String pRegSave(PizzaVo pizzaVo) {
+	public String pRegSave(PizzaVo pizzaVo, RedirectAttributes attr) {		
+		// validation(검사) 시작
+		if (pizzaVo.getScode() == null || "".equals(pizzaVo.getScode())) {
+			attr.addFlashAttribute("errorMessage", "지점을 선택해 주세요");
+			return "redirect:/pizza/pReg";
+		}
+
+		if (pizzaVo.getSaledate() == null) {
+			attr.addFlashAttribute("errorMessage", "날짜를 선택해 주세요");
+			return "redirect:/pizza/pReg";
+		}
+
+		if (StringUtils.isEmpty(pizzaVo.getPcode())) {
+			attr.addFlashAttribute("errorMessage", "피자를 선택해 주세요");
+			return "redirect:/pizza/pReg";
+		}
 		
+		if (pizzaVo.getAmount() <= 0) {
+			attr.addFlashAttribute("errorMessage", "지점을 선택해 주세요");
+			return "redirect:/pizza/pReg";
+		}	
+
 		pizzaService.pRegSave(pizzaVo);
 		return "redirect:/pizza/pReg";
 //		"redirect:"는 그 주소로 아무런 값을 가지지 않은상태로 가는것
@@ -113,9 +151,30 @@ public class PizzaController {
 	
 	//수정
 	@PostMapping("update")
-	public String update(PizzaVo pizzaVo) {
-		pizzaService.update(pizzaVo);
+	public String update(PizzaVo pizzaVo, RedirectAttributes attr) {
 		
+		// validation(검사) 시작
+		if (pizzaVo.getScode() == null || "".equals(pizzaVo.getScode())) {
+			attr.addFlashAttribute("errorMessage", "지점을 선택해 주세요");
+			return "redirect:/pizza/update?saleno="+pizzaVo.getSaleno();
+		}
+
+		if (pizzaVo.getSaledate() == null) {
+			attr.addFlashAttribute("errorMessage", "날짜를 선택해 주세요");
+			return "redirect:/pizza/update?saleno="+pizzaVo.getSaleno();
+		}
+
+		if (StringUtils.isEmpty(pizzaVo.getPcode())) {
+			attr.addFlashAttribute("errorMessage", "피자를 선택해 주세요");
+			return "redirect:/pizza/update?saleno="+pizzaVo.getSaleno();
+		}
+		
+		if (pizzaVo.getAmount() <= 0) {
+			attr.addFlashAttribute("errorMessage", "지점을 선택해 주세요");
+			return "redirect:/pizza/update?saleno="+pizzaVo.getSaleno();
+		}	
+		
+		pizzaService.update(pizzaVo);
 		return "redirect:/pizza/totalSaleList";
 	}
 	
@@ -135,7 +194,7 @@ public class PizzaController {
 	 * 	query string "이름=값"을 가리킨다.
 	 * 	값을 가져오기 위해서 쓰는 애노테이션 이름은 변수 이름, 값은 변수에 할당한다.
 	 * 
-	 * @Param : MyBatis에서 Repository 메서드의 파라미터가 여러 개 일 때, 각가의 변수 이름을 지정하기 위해서 사용
+	 * @Param : MyBatis에서 Repository 메서드의 파라미터가 여러 개 일 때, 각각의 변수 이름을 지정하기 위해서 사용
 	 * ex)
 	 * 		Repository의 메서드
 	 * 		List<Object> selectAll(

@@ -16,6 +16,8 @@
 		    <h1 class="display-4">매출 전표 수정</h1>
 		  </div>
 		</div>
+		
+		<c:if test="${ errorMessage ne null }">${ errorMessage }</c:if>
 
 		<form id="form" action="/pizza/update" method="post">
 		
@@ -26,7 +28,7 @@
 			<div  class="form-group">
 				<label>지점코드 :</label>
 				<select id="scode" name="scode" class="form-control col-3"> 
-					<option>지점 선택</option>
+					<option value="">지점 선택</option>
 					<c:forEach items="${scodelist}" var="scode">
 						<c:if test="${ sale.scode eq scode.scode }">
 							<option selected value="${scode.scode}">${scode.sname}</option>

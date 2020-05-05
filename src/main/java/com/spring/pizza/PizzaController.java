@@ -101,7 +101,7 @@ public class PizzaController {
 		}
 		
 		if (pizzaVo.getAmount() <= 0) {
-			attr.addFlashAttribute("errorMessage", "지점을 선택해 주세요");
+			attr.addFlashAttribute("errorMessage", "판매수량을 확인해 주세요");
 			return "redirect:/pizza/pReg";
 		}	
 
@@ -170,7 +170,7 @@ public class PizzaController {
 		}
 		
 		if (pizzaVo.getAmount() <= 0) {
-			attr.addFlashAttribute("errorMessage", "지점을 선택해 주세요");
+			attr.addFlashAttribute("errorMessage", "판매수량을 확인해 주세요");
 			return "redirect:/pizza/update?saleno="+pizzaVo.getSaleno();
 		}	
 		

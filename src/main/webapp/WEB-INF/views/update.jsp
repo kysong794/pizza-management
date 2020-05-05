@@ -47,7 +47,7 @@
 			<div class="form-group">
 				<label>피자코드 :</label>
 				<select id="pcode" name="pcode" class="form-control col-3">
-					<option>피자선택</option>
+					<option value="">피자선택</option>
 					<c:forEach items="${pcodelist}" var="pcode">
 						<c:if test="${ pcode.pcode eq sale.pcode }">
 							<option selected value="${ pcode.pcode }">${pcode.pname }</option>

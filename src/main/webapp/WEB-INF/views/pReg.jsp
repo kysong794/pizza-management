@@ -49,7 +49,7 @@
 		</div>
 		<div class="form-group">
 			<label>피자 판매 일자 :</label>
-			<input type="date" name ="saledate" class="form-control col-3"/>
+			<input id="saledate" type="date" name ="saledate" class="form-control col-3"/>
 		</div> 
 		<div class="form-group"> 
 			<label>피자코드 :</label>
@@ -77,8 +77,19 @@
 		});
 	</script> -->
 	<script type="text/javascript">
-		$("#submitForm").on("click", function(event) {
+ 		$("#submitForm").on("click", function(event) {
 			
+			if(!$("select[name=scode]").val()){
+				alert('지점을 선택해 주세요');
+				return;
+			}
+ 			
+ 			var saledate = $("#saledate").val();
+			if(saledate === undefined || saledate === ""){
+				alert('날짜를 선택해 주세요');
+				return;
+			}
+ 			
 			var pcode = $("select[name=pcode]").val();
 			if(pcode === undefined || pcode === ""){
 				alert('피자를 선택해 주세요');
@@ -93,7 +104,7 @@
 
 			// 검사완료 후, 제출
 			$("#form").submit();
-		});
+		}); 
 		
 /* 		function check() {
 			var amount = $("#amount").val();
